@@ -76,7 +76,7 @@ module.exports = (context, options = {}) => {
   config.plugins = normalizePlugins(context, plugins)
   config.redirects = normalizeRedirects(localConfig)
   config.transformers = resolveTransformers(config.pkg, localConfig)
-  config.assetUrl = isProd ? localConfig.assetUrl : ''
+  config.assetUrl = isProd && localConfig.assetUrl ? localConfig.assetUrl : ''
   config.pathPrefix = normalizePathPrefix(isProd ? localConfig.pathPrefix : '')
   config._pathPrefix = normalizePathPrefix(localConfig.pathPrefix)
   config.publicAssetPath = config.assetUrl || config.pathPrefix ? `${config.assetUrl}${config.pathPrefix}/` : '/'
