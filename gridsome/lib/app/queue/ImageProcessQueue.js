@@ -48,7 +48,7 @@ class ImageProcessQueue {
   }
 
   async preProcess (filePath, options = {}) {
-    const { imageExtensions, outputDir, pathPrefix, maxImageWidth } = this.config
+    const { imageExtensions, outputDir, pathPrefix, assetUrl, maxImageWidth } = this.config
     const { minSizeDistance = 300 } = this.config.images || {}
     const imagesDir = path.relative(outputDir, this.config.imagesDir)
     const relPath = path.relative(this.context, filePath)
@@ -122,7 +122,7 @@ class ImageProcessQueue {
       const filename = this.createFileName(filePath, arr, hash)
       const relPath = createDestPath(filename, arr)
       const destPath = path.join(this.config.outputDir, relPath)
-      const src = encodeURI(forwardSlash(path.join(pathPrefix || '/', relPath)))
+      const src = encodeURI(assetUrl + forwardSlash(path.join(pathPrefix || '/', relPath)))
 
       return { filename, destPath, src, width, height }
     })

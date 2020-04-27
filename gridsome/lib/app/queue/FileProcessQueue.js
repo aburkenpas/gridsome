@@ -36,7 +36,7 @@ class FileProcessQueue {
       throw new Error(`${filePath} was not found. `)
     }
 
-    const { outputDir, pathPrefix } = this.config
+    const { outputDir, pathPrefix, assetUrl } = this.config
     const filesDir = path.relative(outputDir, this.config.filesDir)
     const relPath = path.relative(this.context, filePath)
 
@@ -52,7 +52,7 @@ class FileProcessQueue {
       filename = `${name}${urlHash}${ext}`
     }
 
-    const src = forwardSlash(path.join(pathPrefix || '/', filesDir, filename))
+    const src = assetUrl + forwardSlash(path.join(pathPrefix || '/', filesDir, filename))
     const destPath = process.env.GRIDSOME_MODE !== 'serve'
       ? path.join(this.config.filesDir, filename)
       : undefined

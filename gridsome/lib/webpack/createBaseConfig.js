@@ -12,7 +12,7 @@ const resolve = (p, c) => path.resolve(c || __dirname, p)
 
 module.exports = (app, { isProd, isServer }) => {
   const { config: projectConfig } = app
-  const { publicPath } = projectConfig
+  const { publicPath, publicAssetPath } = projectConfig
   const { cacheDirectory, cacheIdentifier } = createCacheOptions()
   const assetsDir = path.relative(projectConfig.outputDir, projectConfig.assetsDir)
   const config = new Config()
@@ -25,7 +25,7 @@ module.exports = (app, { isProd, isServer }) => {
   config.mode(isProd ? 'production' : 'development')
 
   config.output
-    .publicPath(publicPath)
+    .publicPath(publicAssetPath)
     .path(projectConfig.outputDir)
     .chunkFilename(`${assetsDir}/js/${filename}`)
     .filename(`${assetsDir}/js/${filename}`)
