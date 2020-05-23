@@ -52,7 +52,8 @@ class Compiler {
       return config
     }, Promise.resolve(resolvedChain.toConfig()))
 
-    if (config.output.publicPath !== this._app.config.publicPath) {
+
+    if (config.output.publicPath !== this._app.config.publicAssetPath) {
       throw new Error(
         `Do not modify webpack output.publicPath directly. ` +
         `Use the "pathPrefix" option in gridsome.config.js instead.`

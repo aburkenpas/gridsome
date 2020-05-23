@@ -15,7 +15,8 @@ export function unslashEnd (string) {
 }
 
 export function url (string = '/') {
-  return normalizePath(`${config.pathPrefix}/${string}`)
+  const myPath = normalizePath(`${config.pathPrefix}/${string}`)
+  return `${config.assetUrl}${myPath}`
 }
 
 export function stripPageParam (route) {
